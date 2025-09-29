@@ -34,9 +34,13 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'default', size = 'default', asChild = false, ...props }, ref) => {
-    const Comp = asChild ? React.Fragment : 'button'
+    if (asChild) {
+      // asChild가 true일 때는 children을 그대로 반환
+      return <>{props.children}</>
+    }
+    
     return (
-      <Comp
+      <button
         className={cn(buttonVariants(variant, size), className)}
         ref={ref}
         {...props}
