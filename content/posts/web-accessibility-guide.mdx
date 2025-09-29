@@ -1,0 +1,415 @@
+---
+title: "웹 접근성, 모두를 위한 웹 만들기"
+date: "2023-11-30"
+description: "웹 접근성의 중요성과 WCAG 가이드라인을 기반으로 한 실무 적용 방법을 알아봅니다."
+tags: ["Accessibility", "A11y", "WCAG", "UX", "HTML"]
+cover: "/images/posts/web-accessibility.jpg"
+draft: false
+---
+
+웹 접근성은 선택이 아닌 필수입니다. 장애를 가진 사용자뿐만 아니라 모든 사용자에게 더 나은 경험을 제공하는 포용적인 웹을 만드는 방법을 알아보겠습니다.
+
+## 웹 접근성이란?
+
+웹 접근성은 **모든 사용자가 웹 콘텐츠와 서비스를 동등하게 이용할 수 있도록 하는 것**입니다. 이는 다음과 같은 사용자를 포함합니다:
+
+- 시각 장애인 (스크린 리더 사용자)
+- 청각 장애인 (자막이나 수화 필요)
+- 운동 장애인 (키보드만 사용)
+- 인지 장애인 (단순하고 명확한 인터페이스 필요)
+- 일시적 장애인 (손목 부상, 밝은 햇빛 등)
+
+## WCAG 2.1 핵심 원칙
+
+WCAG(Web Content Accessibility Guidelines)는 4가지 핵심 원칙을 제시합니다:
+
+### 1. 인식가능 (Perceivable)
+사용자가 정보를 인식할 수 있어야 합니다.
+
+```html
+<!-- ✅ 의미 있는 대체 텍스트 -->
+<img src="chart.png" alt="2024년 매출이 전년 대비 25% 증가한 것을 보여주는 막대 그래프">
+
+<!-- ❌ 무의미한 alt -->
+<img src="chart.png" alt="chart">
+
+<!-- ✅ 정보성 이미지에는 상세한 설명 -->
+<img src="complex-diagram.png" alt="소프트웨어 아키텍처 다이어그램" 
+     longdesc="#diagram-description">
+<div id="diagram-description">
+  <h3>아키텍처 다이어그램 설명</h3>
+  <p>클라이언트가 API 게이트웨이를 통해...</p>
+</div>
+
+<!-- ✅ 색상 외에 추가 정보 제공 -->
+<div class="status-indicator">
+  <span class="success-icon" aria-label="성공">✓</span>
+  처리 완료
+</div>
+
+<div class="status-indicator">
+  <span class="error-icon" aria-label="오류">✗</span>
+  처리 실패
+</div>
+```
+
+### 2. 운용가능 (Operable)
+모든 사용자가 인터페이스를 조작할 수 있어야 합니다.
+
+```html
+<!-- ✅ 키보드 탐색 가능한 드롭다운 -->
+<div class="dropdown" role="menu">
+  <button 
+    class="dropdown-toggle" 
+    aria-haspopup="true" 
+    aria-expanded="false"
+    onclick="toggleDropdown()"
+    onkeydown="handleKeyDown(event)"
+  >
+    메뉴 ▼
+  </button>
+  <ul class="dropdown-menu" role="menulist">
+    <li role="menuitem"><a href="/profile">프로필</a></li>
+    <li role="menuitem"><a href="/settings">설정</a></li>
+    <li role="menuitem"><a href="/logout">로그아웃</a></li>
+  </ul>
+</div>
+
+<script>
+function handleKeyDown(event) {
+  switch(event.key) {
+    case 'Enter':
+    case ' ':
+    case 'ArrowDown':
+      event.preventDefault()
+      toggleDropdown()
+      focusFirstMenuItem()
+      break
+    case 'Escape':
+      closeDropdown()
+      break
+  }
+}
+</script>
+```
+
+### 3. 이해가능 (Understandable)
+정보와 UI 작동이 이해하기 쉬워야 합니다.
+
+```html
+<!-- ✅ 명확한 오류 메시지와 수정 방법 제시 -->
+<form>
+  <div class="form-group">
+    <label for="email">이메일 주소 *</label>
+    <input 
+      type="email" 
+      id="email" 
+      required
+      aria-describedby="email-error email-help"
+    >
+    <div id="email-help" class="help-text">
+      example@domain.com 형식으로 입력해주세요
+    </div>
+    <div id="email-error" class="error-text" role="alert">
+      올바른 이메일 형식이 아닙니다. '@'가 포함된 이메일 주소를 입력해주세요.
+    </div>
+  </div>
+</form>
+
+<!-- ✅ 언어 지정 -->
+<html lang="ko">
+<p>Hello World <span lang="en">in English</span></p>
+```
+
+### 4. 견고함 (Robust)
+다양한 보조 기술에서 작동해야 합니다.
+
+```html
+<!-- ✅ 의미 있는 HTML 구조 -->
+<article>
+  <header>
+    <h1>기사 제목</h1>
+    <time datetime="2024-01-15">2024년 1월 15일</time>
+  </header>
+  <main>
+    <p>기사 내용...</p>
+  </main>
+</article>
+
+<!-- ✅ ARIA 레이블로 의미 보강 -->
+<div role="tablist" aria-label="계정 설정">
+  <button role="tab" aria-selected="true" aria-controls="profile-panel">
+    프로필
+  </button>
+  <button role="tab" aria-selected="false" aria-controls="security-panel">
+    보안
+  </button>
+</div>
+```
+
+## 실무에서 자주 놓치는 접근성 이슈들
+
+### 1. 포커스 관리
+
+```css
+/* ❌ 포커스 표시 제거 */
+button:focus { outline: none; }
+
+/* ✅ 접근 가능한 포커스 스타일 */
+button:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+/* ✅ 고대비로 더 명확하게 */
+@media (prefers-contrast: high) {
+  button:focus-visible {
+    outline: 3px solid #000;
+    background: #fff;
+    color: #000;
+  }
+}
+```
+
+### 2. 동적 콘텐츠 알림
+
+```jsx
+// ✅ 동적 콘텐츠 변경을 스크린 리더에 알림
+const NotificationComponent = () => {
+  const [message, setMessage] = useState('')
+  const [announcements, setAnnouncements] = useState([])
+
+  const addNotification = (text) => {
+    setMessage(text)
+    // 스크린 리더 사용자를 위한 알림
+    setAnnouncements(prev => [...prev, {
+      id: Date.now(),
+      text: text,
+      timestamp: new Date()
+    }])
+  }
+
+  return (
+    <>
+      {/* 사용자에게 보이는 알림 */}
+      {message && (
+        <div className="notification" role="status" aria-live="polite">
+          {message}
+        </div>
+      )}
+      
+      {/* 스크린 리더 전용 알림 영역 */}
+      <div className="sr-only" aria-live="assertive" aria-atomic="true">
+        {announcements.map(announcement => (
+          <div key={announcement.id}>
+            {announcement.text}
+          </div>
+        ))}
+      </div>
+    </>
+  )
+}
+```
+
+### 3. 건너뛰기 링크
+
+```html
+<!-- ✅ 키보드 사용자를 위한 건너뛰기 링크 -->
+<body>
+  <a href="#main" class="skip-link">본문으로 건너뛰기</a>
+  <a href="#navigation" class="skip-link">내비게이션으로 건너뛰기</a>
+  
+  <nav id="navigation">...</nav>
+  <main id="main">...</main>
+</body>
+
+<style>
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 999;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+</style>
+```
+
+## React에서 접근성 구현하기
+
+### 1. 포커스 관리
+
+```jsx
+import { useRef, useEffect } from 'react'
+
+const Modal = ({ isOpen, onClose, title, children }) => {
+  const modalRef = useRef(null)
+  const previousFocusRef = useRef(null)
+
+  useEffect(() => {
+    if (isOpen) {
+      // 모달이 열릴 때 이전 포커스 저장
+      previousFocusRef.current = document.activeElement
+      // 모달에 포커스
+      modalRef.current?.focus()
+      
+      // 키보드 이벤트 처리
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') {
+          onClose()
+        }
+        if (e.key === 'Tab') {
+          // 탭 트랩 구현
+          trapFocus(e, modalRef.current)
+        }
+      }
+      
+      document.addEventListener('keydown', handleKeyDown)
+      return () => document.removeEventListener('keydown', handleKeyDown)
+    } else {
+      // 모달이 닫힐 때 이전 포커스로 복귀
+      previousFocusRef.current?.focus()
+    }
+  }, [isOpen, onClose])
+
+  if (!isOpen) return null
+
+  return (
+    <div className="modal-backdrop" onClick={onClose}>
+      <div 
+        className="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modal-title"
+        ref={modalRef}
+        tabIndex={-1}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <h2 id="modal-title">{title}</h2>
+        {children}
+        <button onClick={onClose} aria-label="모달 닫기">
+          ×
+        </button>
+      </div>
+    </div>
+  )
+}
+```
+
+<Note>
+포커스 관리는 접근성에서 매우 중요합니다. 특히 모달, 드롭다운, 탭과 같은 상호작용 요소에서는 반드시 구현해야 합니다.
+</Note>
+
+### 2. 커스텀 훅으로 접근성 기능 재사용
+
+```jsx
+// useAnnouncer.js - 스크린 리더 알림
+export const useAnnouncer = () => {
+  const announce = useCallback((message, priority = 'polite') => {
+    const announcer = document.createElement('div')
+    announcer.setAttribute('aria-live', priority)
+    announcer.setAttribute('aria-atomic', 'true')
+    announcer.className = 'sr-only'
+    announcer.textContent = message
+    
+    document.body.appendChild(announcer)
+    
+    setTimeout(() => {
+      document.body.removeChild(announcer)
+    }, 1000)
+  }, [])
+  
+  return announce
+}
+
+// 사용 예시
+const SearchResults = ({ results, isLoading }) => {
+  const announce = useAnnouncer()
+  
+  useEffect(() => {
+    if (!isLoading && results) {
+      announce(`${results.length}개의 검색 결과를 찾았습니다.`)
+    }
+  }, [results, isLoading, announce])
+  
+  return (
+    <div role="region" aria-label="검색 결과">
+      {/* 검색 결과 렌더링 */}
+    </div>
+  )
+}
+```
+
+## 접근성 테스트 방법
+
+### 1. 자동화된 도구
+
+```bash
+# axe-core 설치
+npm install --save-dev @axe-core/react
+
+# Jest 테스트에서 접근성 검사
+import { axe, toHaveNoViolations } from 'jest-axe'
+
+expect.extend(toHaveNoViolations)
+
+test('컴포넌트 접근성 검사', async () => {
+  const { container } = render(<MyComponent />)
+  const results = await axe(container)
+  expect(results).toHaveNoViolations()
+})
+```
+
+### 2. 수동 테스트 체크리스트
+
+- [ ] 키보드만으로 모든 기능 사용 가능
+- [ ] 포커스 표시가 명확함
+- [ ] 스크린 리더로 내용이 의미 있게 읽힘
+- [ ] 150% 확대 시에도 사용 가능
+- [ ] 색상 외에 추가 정보 제공
+- [ ] 동적 콘텐츠 변경 시 적절한 알림
+
+### 3. 브라우저 도구 활용
+
+```javascript
+// Chrome DevTools Accessibility 패널 활용
+// Lighthouse 접근성 감사 실행
+// WAVE 브라우저 확장 프로그램 사용
+
+// 키보드 내비게이션 테스트
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Tab') {
+    console.log('Current focus:', document.activeElement)
+  }
+})
+```
+
+<Warning>
+자동화 도구는 접근성 문제의 약 30%만 찾아냅니다. 실제 사용자 테스트와 수동 검사가 반드시 필요합니다.
+</Warning>
+
+## 접근성 개선의 추가 혜택
+
+웹 접근성을 개선하면 다음과 같은 부가 효과를 얻을 수 있습니다:
+
+1. **SEO 향상**: 의미 있는 HTML 구조는 검색 엔진에도 도움
+2. **성능 개선**: 시맨틱 HTML은 보통 더 가벼움
+3. **유지보수성**: 명확한 구조로 코드 이해도 증가
+4. **법적 리스크 감소**: 접근성 관련 소송 예방
+5. **브랜드 이미지**: 포용적인 서비스로 인식
+
+## 마무리
+
+웹 접근성은 **모든 사용자를 위한 더 나은 경험**을 만드는 것입니다. 
+
+처음에는 추가 작업으로 느껴질 수 있지만, 접근성을 고려한 개발이 습관이 되면 자연스럽게 더 좋은 코드를 작성하게 됩니다.
+
+작은 것부터 시작해보세요. alt 텍스트 추가하기, 의미 있는 HTML 태그 사용하기, 키보드 탐색 확인하기 등. 이런 작은 개선들이 모여 모든 사용자에게 도움이 되는 웹을 만들 수 있습니다.
+
+웹 접근성은 의무가 아닌 **모든 사용자에 대한 배려**입니다.
