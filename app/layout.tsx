@@ -1,7 +1,7 @@
 import { Inter, JetBrains_Mono } from 'next/font/google'
-import { ThemeProvider } from 'next-themes'
 import { Analytics } from '@vercel/analytics/react'
 import { generateMetadata } from '@/lib/seo'
+import { ThemeProvider } from '@/components/theme-provider'
 import '@/styles/globals.css'
 
 const inter = Inter({
