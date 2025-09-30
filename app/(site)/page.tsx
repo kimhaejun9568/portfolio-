@@ -1,8 +1,5 @@
-import { getRecentPosts } from '@/lib/mdx'
-import HomeClient from './home-client'
+import { redirect } from 'next/navigation'
 
-export default function HomePage() {
-  const recentPosts = getRecentPosts(3)
-
-  return <HomeClient recentPosts={recentPosts} />
+export default function HomeRedirect() {
+  redirect('/about')
 }

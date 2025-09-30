@@ -1,44 +1,19 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useTheme } from 'next-themes'
 import { Moon, Sun } from 'lucide-react'
+import { useTheme } from '@/lib/theme-context'
 import { cn } from '@/lib/utils'
-import { trackEvent } from '@/lib/analytics'
 
 interface ThemeToggleProps {
   className?: string
 }
 
 export function ThemeToggle({ className }: ThemeToggleProps) {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme, resolvedTheme } = useTheme()
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
+  const { theme, setTheme } = useTheme()
 
   const toggleTheme = () => {
-    const newTheme = resolvedTheme === 'dark' ? 'light' : 'dark'
+    const newTheme = theme === 'dark' ? 'light' : 'dark'
     setTheme(newTheme)
-    trackEvent.toggleDarkMode(newTheme)
-  }
-
-  if (!mounted) {
-    return (
-      <button
-        className={cn(
-          'inline-flex items-center justify-center rounded-md p-2',
-          'hover:bg-muted transition-colors duration-200',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-          className
-        )}
-        disabled
-        aria-label="테마 토글"
-      >
-        <div className="h-4 w-4" />
-      </button>
-    )
   }
 
   return (
@@ -51,9 +26,9 @@ export function ThemeToggle({ className }: ThemeToggleProps) {
         'hover:scale-105 active:scale-95',
         className
       )}
-      aria-label={`${resolvedTheme === 'dark' ? '라이트' : '다크'} 모드로 전환`}
+      aria-label="테마 토글"
     >
-      {resolvedTheme === 'dark' ? (
+      {theme === 'dark' ? (
         <Sun className="h-4 w-4 transition-transform duration-200 rotate-0 scale-100" />
       ) : (
         <Moon className="h-4 w-4 transition-transform duration-200 rotate-0 scale-100" />

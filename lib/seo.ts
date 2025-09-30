@@ -29,17 +29,17 @@ export interface SEOProps {
 }
 
 const defaultSEO = {
-  title: '주예수 - 프론트엔드 개발자',
-  description: '웹 개발과 사용자 경험에 관심이 많은 프론트엔드 개발자 주예수의 개인 블로그입니다.',
-  url: 'https://juyesu.dev',
-  siteName: '주예수 블로그',
-  author: '주예수',
-  keywords: ['프론트엔드', '웹개발', 'React', 'Next.js', 'TypeScript', 'JavaScript'],
+  title: 'Haejun Kim - PhD Student',
+  description: 'Haejun Kim - PhD Student at ETH Zurich, SIPLAB. Research on biomedical time series and machine learning.',
+  url: 'https://haejunkim.dev',
+  siteName: 'Haejun Kim',
+  author: 'Haejun Kim',
+  keywords: ['machine learning', 'biomedical', 'time series', 'wearable computing', 'health informatics', 'ETH Zurich'],
   social: {
-    twitter: '@juyesu_dev',
-    github: 'juyesu',
-    linkedin: 'juyesu',
-    email: 'hello@juyesu.dev',
+    twitter: '@haejunkim',
+    github: 'haejunkim',
+    linkedin: 'haejunkim',
+    email: 'haejun.kim@ethz.ch',
   },
 }
 

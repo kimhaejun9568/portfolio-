@@ -60,15 +60,32 @@ const components = {
       {...props}
     />
   ),
-  a: ({ className, ...props }: React.HTMLAttributes<HTMLAnchorElement>) => (
-    <Link
-      className={cn(
-        'font-medium text-primary underline underline-offset-4 hover:no-underline',
-        className
-      )}
-      {...props}
-    />
-  ),
+  a: ({ className, href, ...props }: React.HTMLAttributes<HTMLAnchorElement> & { href?: string }) => {
+    if (href?.startsWith('http') || href?.startsWith('mailto:')) {
+      return (
+        <a
+          href={href}
+          className={cn(
+            'font-medium text-primary underline underline-offset-4 hover:no-underline',
+            className
+          )}
+          target={href.startsWith('http') ? '_blank' : undefined}
+          rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+          {...props}
+        />
+      )
+    }
+    return (
+      <Link
+        href={href || '#'}
+        className={cn(
+          'font-medium text-primary underline underline-offset-4 hover:no-underline',
+          className
+        )}
+        {...props}
+      />
+    )
+  },
   p: ({ className, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p
       className={cn('leading-7 [&:not(:first-child)]:mt-6', className)}

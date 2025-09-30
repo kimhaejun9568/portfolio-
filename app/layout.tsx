@@ -1,7 +1,6 @@
 import { Inter, JetBrains_Mono } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/react'
 import { generateMetadata } from '@/lib/seo'
-import { ThemeProvider } from '@/components/theme-provider'
+import { ThemeProvider } from '@/lib/theme-context'
 import '@/styles/globals.css'
 
 const inter = Inter({
@@ -15,8 +14,8 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata = generateMetadata({
-  title: '주예수 - 프론트엔드 개발자',
-  description: '웹 개발과 사용자 경험에 관심이 많은 프론트엔드 개발자 주예수의 개인 블로그입니다.',
+  title: 'Haejun Kim - M.S. Student',
+  description: 'Haejun Kim - M.S. Student in Data Science at KAIST. Research on Extended Reality (XR), Human-Computer Interaction, and Context-aware Computing.',
 })
 
 interface RootLayoutProps {
@@ -25,18 +24,27 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="ko" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{
             __html: `
-              try {
-                if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                  document.documentElement.classList.add('dark')
-                } else {
-                  document.documentElement.classList.remove('dark')
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  if (theme && (theme === 'light' || theme === 'dark')) {
+                    document.documentElement.className = '';
+                    document.documentElement.classList.add(theme);
+                  } else {
+                    document.documentElement.className = '';
+                    document.documentElement.classList.add('light');
+                    localStorage.setItem('theme', 'light');
+                  }
+                } catch (e) {
+                  document.documentElement.className = '';
+                  document.documentElement.classList.add('light');
                 }
-              } catch (_) {}
+              })();
             `,
           }}
         />
@@ -45,17 +53,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider>
           <div className="relative flex min-h-screen flex-col">
             {children}
           </div>
         </ThemeProvider>
-        <Analytics />
       </body>
     </html>
   )

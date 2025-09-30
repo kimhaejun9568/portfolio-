@@ -1,12 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import { Home, ArrowLeft } from 'lucide-react'
-import { generateMetadata } from '@/lib/seo'
-import { Button } from '@/components/button'
 
-export const metadata = generateMetadata({
-  title: '페이지를 찾을 수 없습니다',
-  description: '요청하신 페이지를 찾을 수 없습니다. 다른 페이지를 확인해보세요.',
-})
 
 export default function NotFound() {
   return (
@@ -21,17 +17,21 @@ export default function NotFound() {
         </div>
         
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Button asChild>
-            <Link href="/" className="flex items-center gap-2">
-              <Home className="h-4 w-4" />
-              홈으로 돌아가기
-            </Link>
-          </Button>
+          <Link 
+            href="/" 
+            className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-primary text-primary-foreground shadow hover:bg-primary/90 transition-colors"
+          >
+            <Home className="h-4 w-4" />
+            홈으로 돌아가기
+          </Link>
           
-          <Button variant="outline" onClick={() => window.history.back()}>
+          <button 
+            onClick={() => window.history.back()}
+            className="inline-flex items-center justify-center px-4 py-2 rounded-md border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground transition-colors"
+          >
             <ArrowLeft className="h-4 w-4 mr-2" />
             이전 페이지
-          </Button>
+          </button>
         </div>
         
         <div className="pt-4 space-y-2">

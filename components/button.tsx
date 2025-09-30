@@ -29,16 +29,10 @@ const buttonVariants = (variant: ButtonVariant = 'default', size: ButtonSize = '
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant
   size?: ButtonSize
-  asChild?: boolean
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = 'default', size = 'default', asChild = false, ...props }, ref) => {
-    if (asChild) {
-      // asChild가 true일 때는 children을 그대로 반환
-      return <>{props.children}</>
-    }
-    
+  ({ className, variant = 'default', size = 'default', ...props }, ref) => {
     return (
       <button
         className={cn(buttonVariants(variant, size), className)}

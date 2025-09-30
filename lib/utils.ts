@@ -106,7 +106,7 @@ export function filterPostsByTag<T extends { tags?: string[] }>(posts: T[], tag:
  */
 export function getUniqueTags<T extends { tags?: string[] }>(posts: T[]): string[] {
   const tags = posts.flatMap(post => post.tags || [])
-  return [...new Set(tags)].sort()
+  return Array.from(new Set(tags)).sort()
 }
 
 /**

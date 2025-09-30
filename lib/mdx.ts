@@ -140,7 +140,7 @@ export async function serializeMDX(content: string): Promise<any> {
             },
           },
         ],
-        rehypeKatex,
+        rehypeKatex as any,
         [
           rehypePrettyCode,
           {
@@ -173,7 +173,7 @@ export function getReadingTime(content: string): string {
 export function getAllTags(): string[] {
   const posts = getAllPosts()
   const tags = posts.flatMap(post => post.frontmatter.tags || [])
-  return [...new Set(tags)].sort()
+  return Array.from(new Set(tags)).sort()
 }
 
 /**

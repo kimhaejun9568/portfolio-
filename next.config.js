@@ -1,13 +1,13 @@
-const withMDX = require('@next/mdx')()
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
-  experimental: {
-    mdxRs: true,
-  },
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  // Remove experimental features that may cause hydration issues
+  // experimental: {
+  //   mdxRs: true,
+  // },
   images: {
-    domains: ['images.unsplash.com', 'via.placeholder.com'],
+    // 개발 중 최적화 끄기 (로컬 이미지 400 에러 방지)
+    unoptimized: true,
   },
   // Enable static optimization
   swcMinify: true,
@@ -41,4 +41,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withMDX(nextConfig)
+module.exports = nextConfig
