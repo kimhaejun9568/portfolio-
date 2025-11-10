@@ -1,9 +1,7 @@
 import { MetadataRoute } from 'next'
-import { getAllPosts } from '@/lib/mdx'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://juyesu.dev'
-  const posts = getAllPosts()
+  const baseUrl = 'https://haejunkim.vercel.app'
 
   // 정적 페이지들
   const staticPages: MetadataRoute.Sitemap = [
@@ -14,44 +12,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${baseUrl}/blog`,
+      url: `${baseUrl}/about`,
       lastModified: new Date(),
-      changeFrequency: 'daily',
+      changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/projects`,
+      url: `${baseUrl}/publications`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
-      url: `${baseUrl}/talks`,
+      url: `${baseUrl}/experience`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,
     },
-    {
-      url: `${baseUrl}/now`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/uses`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
   ]
 
-  // 블로그 포스트들
-  const postPages: MetadataRoute.Sitemap = posts.map((post) => ({
-    url: `${baseUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.frontmatter.date),
-    changeFrequency: 'monthly' as const,
-    priority: 0.8,
-  }))
-
-  return [...staticPages, ...postPages]
+  return staticPages
 }

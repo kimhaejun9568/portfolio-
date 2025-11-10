@@ -39,20 +39,17 @@ export default function NotFound() {
             찾으시는 내용이 있으시다면:
           </p>
           <div className="flex flex-col sm:flex-row gap-2 justify-center text-sm">
-            <Link href="/blog" className="text-primary hover:underline">
-              블로그 둘러보기
+            <Link href="/publications" className="text-primary hover:underline">
+              Publications
             </Link>
             <span className="hidden sm:inline text-muted-foreground">•</span>
-            <Link href="/projects" className="text-primary hover:underline">
-              프로젝트 보기
+            <Link href="/experience" className="text-primary hover:underline">
+              Experience
             </Link>
             <span className="hidden sm:inline text-muted-foreground">•</span>
-            <a 
-              href="mailto:hello@juyesu.dev" 
-              className="text-primary hover:underline"
-            >
-              문의하기
-            </a>
+            <Link href="/about" className="text-primary hover:underline">
+              About
+            </Link>
           </div>
         </div>
       </div>

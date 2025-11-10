@@ -30,7 +30,7 @@ export function SearchFilter({ tags, currentTag, currentSearch }: SearchFilterPr
       params.delete('search')
     }
     
-    router.push(`/blog?${params.toString()}`)
+    router.push(`/publications?${params.toString()}`)
   }
 
   const handleTagClick = (tag: string) => {
@@ -42,12 +42,12 @@ export function SearchFilter({ tags, currentTag, currentSearch }: SearchFilterPr
       params.set('tag', tag)
     }
     
-    router.push(`/blog?${params.toString()}`)
+    router.push(`/publications?${params.toString()}`)
   }
 
   const clearFilters = () => {
     setSearch('')
-    router.push('/blog')
+    router.push('/publications')
   }
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
