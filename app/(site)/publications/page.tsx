@@ -38,20 +38,19 @@ const conferenceJournalPapers: Publication[] = [
     year: "2025",
     type: "journal",
     pdfUrl: "/pdf/publications/j.1-task-factors-multidirectional.pdf"
+  },
+  {
+    id: "j.2",
+    title: "Effects of a Passive Shoulder Support Exoskeleton and Keyboard Interaction Design on Mid-Air Typing in Mixed Reality",
+    authors: "Haejun Kim, Qiuli Jin, Seonghyeok Park, Woojoo Kim*, Shuping Xiong*",
+    venue: "International Journal of Human-Computer Interaction (IJHCI)",
+    year: "2025",
+    type: "journal",
+    pdfUrl: "/pdf/publications/j.2-exoskeleton-midair-typing.pdf"
   }
 ]
 
-const underReview: Publication[] = [
-  {
-    id: "u.1",
-    title: "Effects of a Passive Shoulder Support Exoskeleton and Keyboard Interaction Design on Mid-Air Typing in Mixed Reality",
-    authors: "Haejun Kim, Qiuli Jin, Seonghyeok Park, Woojoo Kim*, Shuping Xiong*",
-    venue: "IJHCI, resubmitted after minor revision",
-    year: "2025",
-    type: "journal",
-    pdfUrl: "#"
-  }
-]
+const underReview: Publication[] = []
 
 const postersWorkshops: Publication[] = [
   {

@@ -82,7 +82,7 @@ export default function AboutPage() {
             Currently, my primary research interest lies in context-aware adaptive user interfaces in XR environments. I am exploring how interactive systems can intelligently respond to user contexts to enhance usability, comfort, and overall experience.
             </p>
             <p>
-            Beyond my academic work, I actively engage in science communication through social media platforms like <a href="https://www.threads.com/@mock_jokerbug?hl=ko" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Threads</a> (current followers: 8.5k). As a personal passion project, I share the latest news and insights about XR technologies with the Korean-speaking community, aiming to bridge the gap between cutting-edge research and the public.
+            Beyond academia, I share XR news and insights in Korean on <a href="https://www.threads.com/@mock_jokerbug?hl=ko" className="text-primary hover:underline" target="_blank" rel="noopener noreferrer">Threads</a>  (9k followers) to help bridge cutting-edge research and the public.
             </p>        
             <p>
               <a 

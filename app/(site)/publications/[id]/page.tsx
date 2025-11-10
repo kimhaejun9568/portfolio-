@@ -2,7 +2,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, FileText } from 'lucide-react'
-import { generateSEOMetadata } from '@/lib/seo'
 
 // Define the publication type with additional details
 interface Publication {
@@ -113,14 +112,6 @@ export async function generateMetadata({ params }: PageProps) {
   return {
     title: `${publication.title} | Haejun Kim`,
     description: publication.abstract.slice(0, 160) + '...',
-  }
-}
-
-// SEO 메타데이터 생성 헬퍼 함수
-function createPublicationMetadata(publication: Publication) {
-  return {
-    title: `${publication.title} | Haejun Kim`,
-    description: publication.abstract.slice(0, 160) + '...',
     openGraph: {
       title: publication.title,
       description: publication.abstract.slice(0, 160) + '...',
@@ -137,6 +128,7 @@ function createPublicationMetadata(publication: Publication) {
     },
   }
 }
+
 
 export default async function PublicationPage({ params }: PageProps) {
   const { id } = await params

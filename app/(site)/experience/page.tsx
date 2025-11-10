@@ -32,7 +32,6 @@ const education = [
     degree: "M.S. in Data Science",
     institution: "Korea Advanced Institute of Science and Technology (KAIST)",
     location: "Daejeon, South Korea",
-    thesis: "Adaptive Transparency Control for Spatial UI: Investigating User Experience and Behavior During Walking in XR",
     advisor: "Advisor: Shuping Xiong"
   },
   {
@@ -41,7 +40,7 @@ const education = [
     institution: "Hanyang University",
     location: "Seoul, South Korea",
     thesis: "VHDT:Vision and Human-Object Interaction Detection Transformer based on ViDT",
-    honors: "CUM LAUDE"
+    honors: "cum laude"
   }
 ]
 
