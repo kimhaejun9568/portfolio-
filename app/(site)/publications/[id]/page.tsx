@@ -44,16 +44,16 @@ const allPublications: Publication[] = [
     publication: "International Journal of Human-Computer Interaction, 2025"
   },
   {
-    id: "u.1",
+    id: "j.2",
     title: "Effects of a Passive Shoulder Support Exoskeleton and Keyboard Interaction Design on Mid-Air Typing in Mixed Reality",
     authors: "Haejun Kim, Qiuli Jin, Seonghyeok Park, Woojoo Kim*, Shuping Xiong*",
-    venue: "IJHCI, resubmitted after minor revision",
+    venue: "International Journal of Human-Computer Interaction (IJHCI)",
     year: "2025",
     type: "Journal Article",
-    pdfUrl: "#",
+    pdfUrl: "/pdf/publications/j.2-exoskeleton-midair-typing.pdf",
     teaserImage: "/images/publications/exoskeleton-typing-teaser.png",
     abstract: "Typing in Mixed Reality (MR) presents significant interaction and ergonomic challenges, particularly in mid-air scenarios. This study investigated how passive shoulder support exoskeletons and different keyboard interaction designs affect mid-air typing in Mixed Reality. Twenty participants performed typing tasks across three keyboard conditions (Physical, Virtual-Poking, and Virtual-Touch) both with and without exoskeleton support. Results showed exoskeletons significantly reduced deltoid muscle activity and self-reported fatigue without compromising typing performance. When wearing exoskeletons, participants exhibited increased shoulder flexion and abduction angles with decreased hand movement distance. Physical keyboards significantly outperformed virtual keyboards in typing metrics. Among virtual keyboards, the Poking interface received higher haptic sensation ratings than the Touch interface and demonstrated better compatibility with exoskeletons. These findings inform the development of sustainable mid-air text entry solutions that balance ergonomic support with performance and satisfaction, suggesting keyboard interfaces should match available physical support infrastructure to optimize user experience in extended MR applications.",
-    publication: "International Journal of Human-Computer Interaction (Under Review)"
+    publication: "International Journal of Human-Computer Interaction, 2025"
   },
   {
     id: "p.3",
