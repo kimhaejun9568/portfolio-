@@ -50,7 +50,17 @@ const conferenceJournalPapers: Publication[] = [
   }
 ]
 
-const underReview: Publication[] = []
+const underReview: Publication[] = [
+  {
+    id: "U.1",
+    title: "Effects of Adaptive UI: Transparency Control on XR Walking and Pedestrian Avoidance",
+    authors: "Haejun Kim, Qiuli Jin, Shuping Xiong*, Woojoo Kim*",
+    venue: "International Journal of Human-Computer Interaction (IJHCI)",
+    year: "2025",
+    type: "journal",
+    pdfUrl: "#"
+  }
+]
 
 const postersWorkshops: Publication[] = [
   {

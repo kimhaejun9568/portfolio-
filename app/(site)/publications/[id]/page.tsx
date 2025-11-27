@@ -20,6 +20,17 @@ interface Publication {
 // All publications data with detailed information
 const allPublications: Publication[] = [
   {
+    id: "U.1",
+    title: "Effects of Adaptive UI: Transparency Control on XR Walking and Pedestrian Avoidance",
+    authors: "Haejun Kim, Qiuli Jin, Shuping Xiong*, Woojoo Kim*",
+    venue: "International Journal of Human-Computer Interaction (IJHCI)",
+    year: "2025",
+    type: "Journal Article (Under Review)",
+    pdfUrl: "#",
+    abstract: "As augmented reality (AR) glasses become increasingly prevalent in daily life, ensuring pedestrian safety while wearing these devices has emerged as a critical concern. User interface (UI) elements displayed on AR glasses can occlude real-world objects, potentially leading to hazardous situations during walking. Current commercial AR glasses typically employ fixed transparency values for UI elements, which compromise content readability, while research approaches utilizing large language models introduce unacceptable latency for real-time safety applications. To address this challenge, we propose an adaptive transparency system that leverages YOLOv11 nano for real-time pedestrian detection. Our system dynamically adjusts UI transparency-becoming transparent when pedestrians are detected in the user's field of view and returning to opaque when the path is clear. We conducted a within-subject study comparing four UI rendering methods (Adaptive Transparency, Fixed Transparency, Depth-aware, and None) across two UI sizes. Results revealed that both Fixed and Adaptive Transparency methods significantly outperformed the other conditions in terms of safety metrics and subjective satisfaction, with minimal impact from UI size variations. Notably, the Adaptive Transparency method achieved comparable safety performance to Fixed Transparency while demonstrating superior text readability within the UI. Our findings demonstrate the impact of different UI rendering approaches on pedestrian safety and task performance in AR environments, highlighting the necessity of adaptive UI systems that can balance safety requirements with content accessibility. This work provides empirical evidence supporting the development of context-aware AR interfaces for mobile use.",
+    publication: "International Journal of Human-Computer Interaction (Under Review)"
+  },
+  {
     id: "c.1",
     title: "Toward a More Standardized Multi-directional Tapping Task in VR: The Effect of Target Depth",
     authors: "Haejun Kim, Yuhwa Hong, Jihae Yu, Shuping Xiong*, Woojoo Kim*",
