@@ -202,36 +202,6 @@ export default function PublicationsPage() {
                 <div className="flex-shrink-0">
                   <div className="relative w-full md:w-80 h-48 bg-muted/50 rounded-lg overflow-hidden">
                     <Image
-                      src="/images/research/adaptive-ui-transparency.png"
-                      alt="Adaptive Transparency Control for Spatial UI in XR"
-                      width={320}
-                      height={192}
-                      className="object-contain w-full h-full"
-                    />
-                  </div>
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold mb-3">
-                    Adaptive Transparency Control for Spatial UI in XR
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed mb-4">
-                  This research investigates how dynamically adjusted transparency in spatial user interfaces (SUIs) affects user behavior and experience during walking in Extended Reality (XR) environments. Rather than relying on heuristic or manually predefined transparency settings, we propose and develop a context-aware algorithm that adjusts UI transparency in real-time based on external environmental factors. The study includes the design and implementation of the algorithm as well as empirical user evaluation to assess its impact on usability, safety, and overall user experience.
-                  </p>
-                  <div className="text-sm">
-                    <span className="font-medium text-foreground">Status:</span>
-                    <span className="ml-2 px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">
-                      M.S. Thesis Research
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="bg-muted/50 rounded-lg p-6">
-              <div className="flex flex-col md:flex-row gap-6">
-                <div className="flex-shrink-0">
-                  <div className="relative w-full md:w-80 h-48 bg-muted/50 rounded-lg overflow-hidden">
-                    <Image
                       src="/images/research/ai-ux-prediction.png"
                       alt="Human Factor and AI-Based UX Prediction of Spatial User Interfaces"
                       width={320}
