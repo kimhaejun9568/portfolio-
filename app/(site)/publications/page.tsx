@@ -58,7 +58,7 @@ const underReview: Publication[] = [
     venue: "International Journal of Human-Computer Interaction (IJHCI)",
     year: "2025",
     type: "journal",
-    pdfUrl: "#"
+    pdfUrl: "/pdf/publications/u.1-transparency-mr-walking.pdf"
   }
 ]
 
