@@ -59,8 +59,8 @@ const underReview: Publication[] = [
     venue: "International Journal of Human-Computer Studies (IJHCS)",
     year: "2025",
     type: "journal",
-    pdfUrl: "https://ssrn.com",
-    preprintUrl: "https://ssrn.com"
+    pdfUrl: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6161580",
+    preprintUrl: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6161580"
   }
 ]
 
