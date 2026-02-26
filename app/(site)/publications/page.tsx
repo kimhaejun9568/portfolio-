@@ -17,6 +17,7 @@ interface Publication {
   year: string
   type: string
   pdfUrl: string
+  preprintUrl?: string
 }
 
 // Publications categorized by type
@@ -55,10 +56,11 @@ const underReview: Publication[] = [
     id: "U.1",
     title: "Beyond Constant Transparency: Evaluating a Pedestrian-Aware Transparency-Adaptive Interface for Mixed Reality Walking",
     authors: "Haejun Kim, Qiuli Jin, Shuping Xiong*, Woojoo Kim*",
-    venue: "International Journal of Human-Computer Interaction (IJHCI)",
+    venue: "International Journal of Human-Computer Studies (IJHCS)",
     year: "2025",
     type: "journal",
-    pdfUrl: "/pdf/publications/u.1-transparency-mr-walking.pdf"
+    pdfUrl: "https://ssrn.com",
+    preprintUrl: "https://ssrn.com"
   }
 ]
 
@@ -126,7 +128,7 @@ const PublicationItem = ({ pub }: { pub: Publication }) => (
       <div className="italic text-foreground">
         {pub.venue}.
       </div>
-      <div className="flex gap-2 mt-3">
+      <div className="flex gap-2 mt-3 flex-wrap">
         {pub.pdfUrl !== "#" ? (
           <a
             href={pub.pdfUrl}
@@ -138,6 +140,16 @@ const PublicationItem = ({ pub }: { pub: Publication }) => (
           <div className="inline-block bg-muted text-muted-foreground px-3 py-1 text-sm font-medium cursor-not-allowed">
             PDF (Coming Soon)
           </div>
+        )}
+        {pub.preprintUrl && (
+          <a
+            href={pub.preprintUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-secondary text-secondary-foreground px-3 py-1 text-sm font-medium hover:bg-secondary/80 transition-colors"
+          >
+            Preprint (SSRN)
+          </a>
         )}
       </div>
     </div>
